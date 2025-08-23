@@ -75,6 +75,32 @@ st.markdown("""
         font-weight: bold;
     }
     
+    /* Quick Exit button tooltip styling */
+    .stTooltip, [data-testid="stTooltip"] {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border: 1px solid #ffffff !important;
+        border-radius: 4px !important;
+    }
+    
+    .stTooltip .tooltip-content, [data-testid="stTooltip"] .tooltip-content {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+    }
+    
+    /* Streamlit tooltip styling */
+    div[data-baseweb="tooltip"] {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border: 1px solid #ffffff !important;
+    }
+    
+    [role="tooltip"] {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border: 1px solid #ffffff !important;
+    }
+    
     /* Submit Assessment button - red and dark gray dynamic */
     .stForm .stButton > button {
         background: linear-gradient(135deg, #8d1638 0%, #34333a 100%);
