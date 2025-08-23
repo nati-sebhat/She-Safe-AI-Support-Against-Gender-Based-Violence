@@ -92,7 +92,35 @@ st.markdown("""
     /* Chat message styling for dark mode */
     .stChatMessage {
         background-color: #262730;
-        color: #fafafa;
+        color: #fafafa !important;
+    }
+    
+    /* AI assistant message styling - white text */
+    .stChatMessage[data-testid="chatAvatarIcon-assistant"] {
+        background-color: #262730;
+        color: #ffffff !important;
+    }
+    
+    .stChatMessage[data-testid="chatAvatarIcon-assistant"] .stMarkdown {
+        color: #ffffff !important;
+    }
+    
+    .stChatMessage[data-testid="chatAvatarIcon-assistant"] p {
+        color: #ffffff !important;
+    }
+    
+    /* User message styling */
+    .stChatMessage[data-testid="chatAvatarIcon-user"] {
+        background-color: #1a1a1a;
+        color: #ffffff !important;
+    }
+    
+    .stChatMessage[data-testid="chatAvatarIcon-user"] .stMarkdown {
+        color: #ffffff !important;
+    }
+    
+    .stChatMessage[data-testid="chatAvatarIcon-user"] p {
+        color: #ffffff !important;
     }
     
     /* Tab styling */
@@ -133,6 +161,60 @@ st.markdown("""
     /* Top toolbar background */
     .stToolbar {
         background-color: #722F37 !important;
+    }
+    
+    /* Fix all text visibility issues */
+    .stMarkdown, .stMarkdown p, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+        color: #fafafa !important;
+    }
+    
+    /* Form labels and text */
+    .stFormSubmitButton, label, .stRadio label, .stCheckbox label, .stSelectbox label, .stTextInput label, .stTextArea label {
+        color: #fafafa !important;
+    }
+    
+    /* Tab content text */
+    .stTabs [data-baseweb="tab-panel"] {
+        color: #fafafa !important;
+    }
+    
+    /* Expander content */
+    .streamlit-expanderContent {
+        background-color: #262730;
+        color: #fafafa !important;
+    }
+    
+    /* Success/error/warning messages */
+    .stSuccess, .stError, .stWarning, .stInfo {
+        color: #fafafa !important;
+    }
+    
+    /* General text elements */
+    div, span, p, li, ul, ol {
+        color: #fafafa !important;
+    }
+    
+    /* Strong text elements */
+    strong, b, em, i {
+        color: #ffffff !important;
+    }
+    
+    /* Ensure all chat input text is visible */
+    .stChatInput textarea {
+        background-color: #262730 !important;
+        color: #fafafa !important;
+        border: 1px solid #404040 !important;
+    }
+    
+    /* Spinner text */
+    .stSpinner {
+        color: #fafafa !important;
+    }
+    
+    /* Code blocks */
+    code, pre {
+        background-color: #1a1a1a !important;
+        color: #fafafa !important;
     }
     </style>
 """, unsafe_allow_html=True)
