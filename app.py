@@ -410,10 +410,10 @@ st.markdown("""
 # --- Panic Button (Always Visible) ---
 col1, col2 = st.columns([1, 6])
 with col1:
-    if st.button("🚨 Quick Exit", help="Leave immediately", type="primary"):
+    if st.button("🚨 Quick Exit", type="primary"):
         st.markdown("""
             <script>
-            window.open('https://www.google.com', '_self');
+            window.location.replace('https://www.google.com');
             </script>
         """, unsafe_allow_html=True)
 
