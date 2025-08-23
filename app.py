@@ -139,18 +139,18 @@ st.markdown("""
         color: #fafafa;
     }
     
-    /* Header/Toolbar styling - wine red background */
+    /* Header/Toolbar styling - black background */
     .stApp > header {
-        background-color: #722F37 !important;
+        background-color: #000000 !important;
     }
     
     header[data-testid="stHeader"] {
-        background-color: #722F37 !important;
+        background-color: #000000 !important;
         height: 3rem;
     }
     
     .stApp > header, .stApp header {
-        background-color: #722F37 !important;
+        background-color: #000000 !important;
     }
     
     /* Three dots menu styling */
@@ -160,7 +160,7 @@ st.markdown("""
     
     /* Top toolbar background */
     .stToolbar {
-        background-color: #722F37 !important;
+        background-color: #000000 !important;
     }
     
     /* Fix all text visibility issues */
@@ -198,8 +198,37 @@ st.markdown("""
         color: #ffffff !important;
     }
     
-    /* Select box options */
+    .stRadio > div > label > div {
+        color: #ffffff !important;
+    }
+    
+    .stRadio label {
+        color: #ffffff !important;
+    }
+    
+    /* Select box options and dropdown text */
     .stSelectbox > div > div > div {
+        color: #ffffff !important;
+    }
+    
+    .stSelectbox option {
+        background-color: #262730 !important;
+        color: #ffffff !important;
+    }
+    
+    .stSelectbox select {
+        background-color: #262730 !important;
+        color: #ffffff !important;
+    }
+    
+    /* Dropdown menu items */
+    [data-baseweb="select"] [role="option"] {
+        background-color: #262730 !important;
+        color: #ffffff !important;
+    }
+    
+    [data-baseweb="select"] [role="listbox"] {
+        background-color: #262730 !important;
         color: #ffffff !important;
     }
     
