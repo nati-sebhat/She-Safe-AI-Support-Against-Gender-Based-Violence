@@ -1,7 +1,7 @@
 # app.py – She Safe GBV Chatbot
 import streamlit as st
 import os
-from assistant import get_response, get_safety_tips, get_coping_strategies
+from assistant import get_response, get_safety_tips, get_coping_strategies, get_daily_affirmations
 from questionnaire import QUESTIONNAIRE
 
 # --- Page Settings ---
@@ -30,21 +30,21 @@ st.markdown("""
     }
     
     .emergency-section {
-        background-color: #2d1b1b;
+        background-color: #000000;
         padding: 20px;
         border-radius: 10px;
-        border-left: 5px solid #ff6b6b;
+        border-left: 5px solid #6D0000;
         margin: 20px 0;
-        color: #fafafa;
+        color: #ffffff;
     }
     
     .support-message {
-        background-color: #1b2d1b;
+        background-color: #000000;
         padding: 15px;
         border-radius: 10px;
-        border-left: 5px solid #4caf50;
+        border-left: 5px solid #6D0000;
         margin: 15px 0;
-        color: #fafafa;
+        color: #ffffff;
     }
     
     .warning-text {
@@ -67,21 +67,21 @@ st.markdown("""
     }
     
     .stTextInput > div > div > input {
-        background-color: #262730;
-        color: #fafafa;
-        border: 1px solid #404040;
+        background-color: #000000;
+        color: #ffffff;
+        border: 1px solid #6D0000;
     }
     
     .stTextArea > div > div > textarea {
-        background-color: #262730;
-        color: #fafafa;
-        border: 1px solid #404040;
+        background-color: #000000;
+        color: #ffffff;
+        border: 1px solid #6D0000;
     }
     
     .stSelectbox > div > div > select {
-        background-color: #262730;
-        color: #fafafa;
-        border: 1px solid #404040;
+        background-color: #000000;
+        color: #ffffff;
+        border: 1px solid #6D0000;
     }
     
     .stRadio > div {
@@ -173,6 +173,55 @@ st.markdown("""
         color: #fafafa !important;
     }
     
+    /* Assessment form specific styling */
+    .stForm {
+        background-color: #262730 !important;
+        color: #fafafa !important;
+        border: 1px solid #404040 !important;
+    }
+    
+    .stForm label {
+        color: #ffffff !important;
+        font-weight: bold !important;
+    }
+    
+    .stForm .stMarkdown {
+        color: #ffffff !important;
+    }
+    
+    .stForm .stMarkdown strong {
+        color: #ffffff !important;
+    }
+    
+    /* Radio button options text */
+    .stRadio > div > label > div:last-child {
+        color: #ffffff !important;
+    }
+    
+    /* Select box options */
+    .stSelectbox > div > div > div {
+        color: #ffffff !important;
+    }
+    
+    /* Fix form text visibility */
+    .stForm label, .stForm div, .stForm span {
+        color: #ffffff !important;
+    }
+    
+    /* Radio button and select box options */
+    .stRadio > div > div > div > label {
+        color: #ffffff !important;
+    }
+    
+    .stSelectbox > div > div > div {
+        color: #ffffff !important;
+    }
+    
+    /* Form section headers */
+    .stForm h3, .stForm h4, .stForm strong {
+        color: #ffffff !important;
+    }
+    
     /* Tab content text */
     .stTabs [data-baseweb="tab-panel"] {
         color: #fafafa !important;
@@ -189,7 +238,7 @@ st.markdown("""
         color: #fafafa !important;
     }
     
-    /* General text elements */
+    /* General text elements - black and #6D0000 scheme */
     div, span, p, li, ul, ol {
         color: #fafafa !important;
     }
@@ -197,6 +246,25 @@ st.markdown("""
     /* Strong text elements */
     strong, b, em, i {
         color: #ffffff !important;
+    }
+    
+    /* New color scheme - black and dark red */
+    .emergency-section {
+        background-color: #000000;
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 5px solid #6D0000;
+        margin: 20px 0;
+        color: #fafafa;
+    }
+    
+    .support-message {
+        background-color: #000000;
+        padding: 15px;
+        border-radius: 10px;
+        border-left: 5px solid #6D0000;
+        margin: 15px 0;
+        color: #fafafa;
     }
     
     /* Ensure all chat input text is visible */
@@ -475,26 +543,15 @@ with tab4:
             st.markdown(get_coping_strategies())
     
     with col2:
-        if st.button("💝 Positive Affirmations"):
+        if st.button("💝 Get Daily Affirmations"):
             # Show diverse women image for representation
             try:
                 st.image("assets/2.png", width=300, caption="")
             except:
                 pass
-            st.markdown("""
-            **Daily Affirmations for Survivors:**
-            
-            🌟 "I am worthy of love and respect."
-            🌟 "My feelings are valid and important."
-            🌟 "I have the strength to overcome challenges."
-            🌟 "I deserve to feel safe and secure."
-            🌟 "I am not defined by what happened to me."
-            🌟 "Seeking help is a sign of courage, not weakness."
-            🌟 "I trust my instincts and intuition."
-            🌟 "I am taking steps toward a brighter future."
-            🌟 "I am surrounded by people who care about me."
-            🌟 "Every day, I am becoming stronger and more resilient."
-            """)
+            with st.spinner("Creating personalized affirmations..."):
+                affirmations = get_daily_affirmations()
+            st.markdown(affirmations)
     
     st.markdown("---")
     

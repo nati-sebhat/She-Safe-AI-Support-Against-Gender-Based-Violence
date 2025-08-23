@@ -72,6 +72,44 @@ def get_safety_tips():
     ⚠️ **If in immediate danger, contact local emergency services immediately.**
     """
 
+def get_daily_affirmations():
+    """
+    Generate dynamic daily affirmations for GBV survivors using AI
+    """
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o",  # The newest OpenAI model
+            messages=[
+                {
+                    "role": "system", 
+                    "content": "Generate 10 powerful, empowering daily affirmations specifically for survivors of gender-based violence. Make them personal, healing-focused, and strength-building. Each should be unique and meaningful. Format them as a simple numbered list."
+                },
+                {
+                    "role": "user", 
+                    "content": "Create personalized daily affirmations for survivors that focus on self-worth, strength, healing, and empowerment."
+                }
+            ],
+            max_tokens=300,
+            temperature=0.8
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        # Fallback affirmations if AI fails
+        return """
+        **Daily Affirmations for Survivors:**
+        
+        🌟 "I am worthy of love and respect."
+        🌟 "My feelings are valid and important."
+        🌟 "I have the strength to overcome challenges."
+        🌟 "I deserve to feel safe and secure."
+        🌟 "I am not defined by what happened to me."
+        🌟 "Seeking help is a sign of courage, not weakness."
+        🌟 "I trust my instincts and intuition."
+        🌟 "I am taking steps toward a brighter future."
+        🌟 "I am surrounded by people who care about me."
+        🌟 "Every day, I am becoming stronger and more resilient."
+        """
+
 def get_coping_strategies():
     """
     Provide mental health coping strategies
