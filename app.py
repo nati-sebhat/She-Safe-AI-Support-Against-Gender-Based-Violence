@@ -66,13 +66,25 @@ st.markdown("""
         border-radius: 8px;
     }
     
-    /* Quick Exit button - black and dark red dynamic */
-    .stButton[data-testid="baseButton-secondary"] > button {
-        background: linear-gradient(135deg, #000000 0%, #430000 100%);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-weight: bold;
+    /* Header Quick Exit button styling */
+    .header-quick-exit {
+        position: fixed !important;
+        top: 10px !important;
+        right: 60px !important;
+        z-index: 9999 !important;
+        background-color: #b40036 !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 4px !important;
+        padding: 6px 12px !important;
+        font-size: 12px !important;
+        font-weight: bold !important;
+        cursor: pointer !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+    }
+    
+    .header-quick-exit:hover {
+        background-color: #900030 !important;
     }
     
     /* Quick Exit button tooltip styling */
@@ -407,15 +419,17 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- Panic Button (Always Visible) ---
-col1, col2 = st.columns([1, 6])
-with col1:
-    if st.button("🚨 Quick Exit", type="primary"):
-        st.markdown("""
-            <script>
-            window.location.replace('https://www.google.com');
-            </script>
-        """, unsafe_allow_html=True)
+# --- Quick Exit Button in Header ---
+st.markdown("""
+<div style="position: fixed; top: 10px; right: 60px; z-index: 9999;">
+    <button onclick="window.location.replace('https://www.google.com')" 
+            style="background-color: #b40036; color: white; border: none; 
+                   border-radius: 4px; padding: 6px 12px; font-size: 12px; 
+                   font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+        🚨 Exit
+    </button>
+</div>
+""", unsafe_allow_html=True)
 
 # --- Header ---
 col1, col2 = st.columns([1, 4])
