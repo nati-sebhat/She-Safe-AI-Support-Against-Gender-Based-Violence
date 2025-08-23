@@ -77,13 +77,20 @@ with col2:
     st.title("She Safe – AI Support Against GBV")
     st.markdown("**A confidential, safe, and supportive space for survivors and allies.**")
 
-# Welcome message
-st.markdown("""
-<div class="support-message">
-💝 <strong>You are not alone.</strong> This is a safe space where you can find support, resources, and guidance. 
-Your privacy and safety are our top priorities.
-</div>
-""", unsafe_allow_html=True)
+# Welcome message with supportive image
+col1, col2 = st.columns([2, 1])
+with col1:
+    st.markdown("""
+    <div class="support-message">
+    💝 <strong>You are not alone.</strong> This is a safe space where you can find support, resources, and guidance. 
+    Your privacy and safety are our top priorities.
+    </div>
+    """, unsafe_allow_html=True)
+with col2:
+    try:
+        st.image("assets/4.png", width=200, caption="")
+    except:
+        pass
 
 # --- Emergency Support Section ---
 st.markdown("""
@@ -217,6 +224,16 @@ with tab2:
 with tab3:
     st.subheader("Safety Resources & Tips")
     
+    # Add "Break the Silence" imagery
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        try:
+            st.image("assets/5.png", width=300, caption="")
+        except:
+            pass
+    
+    st.markdown("---")
+    
     col1, col2 = st.columns(2)
     
     with col1:
@@ -280,6 +297,14 @@ with tab3:
 with tab4:
     st.subheader("Mental Health & Wellbeing")
     
+    # Add supportive imagery
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        try:
+            st.image("assets/3.png", width=300, caption="")
+        except:
+            pass
+    
     col1, col2 = st.columns(2)
     
     with col1:
@@ -288,6 +313,11 @@ with tab4:
     
     with col2:
         if st.button("💝 Positive Affirmations"):
+            # Show diverse women image for representation
+            try:
+                st.image("assets/2.png", width=300, caption="")
+            except:
+                pass
             st.markdown("""
             **Daily Affirmations for Survivors:**
             
