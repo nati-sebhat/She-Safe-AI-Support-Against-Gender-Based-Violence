@@ -12,12 +12,14 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- Custom CSS for better styling ---
+# --- Custom CSS for dark mode styling ---
 st.markdown("""
     <style>
     .stApp {
         max-width: 1200px;
         margin: 0 auto;
+        background-color: #0e1117;
+        color: #fafafa;
     }
     
     .panic-button {
@@ -28,30 +30,85 @@ st.markdown("""
     }
     
     .emergency-section {
-        background-color: #fff3f3;
+        background-color: #2d1b1b;
         padding: 20px;
         border-radius: 10px;
-        border-left: 5px solid #c1121f;
+        border-left: 5px solid #ff6b6b;
         margin: 20px 0;
+        color: #fafafa;
     }
     
     .support-message {
-        background-color: #f0f8f0;
+        background-color: #1b2d1b;
         padding: 15px;
         border-radius: 10px;
-        border-left: 5px solid #28a745;
+        border-left: 5px solid #4caf50;
         margin: 15px 0;
+        color: #fafafa;
     }
     
     .warning-text {
-        color: #c1121f;
+        color: #ff6b6b;
         font-weight: bold;
     }
     
     .help-text {
-        color: #666;
+        color: #b0b0b0;
         font-style: italic;
         font-size: 14px;
+    }
+    
+    /* Force dark theme elements */
+    .stButton > button {
+        background-color: #e07a5f;
+        color: white;
+        border: none;
+        border-radius: 8px;
+    }
+    
+    .stTextInput > div > div > input {
+        background-color: #262730;
+        color: #fafafa;
+        border: 1px solid #404040;
+    }
+    
+    .stTextArea > div > div > textarea {
+        background-color: #262730;
+        color: #fafafa;
+        border: 1px solid #404040;
+    }
+    
+    .stSelectbox > div > div > select {
+        background-color: #262730;
+        color: #fafafa;
+        border: 1px solid #404040;
+    }
+    
+    .stRadio > div {
+        background-color: transparent;
+        color: #fafafa;
+    }
+    
+    /* Chat message styling for dark mode */
+    .stChatMessage {
+        background-color: #262730;
+        color: #fafafa;
+    }
+    
+    /* Tab styling */
+    .stTabs [data-baseweb="tab-list"] {
+        background-color: #262730;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        background-color: #262730;
+        color: #fafafa;
+    }
+    
+    /* Expander styling */
+    .streamlit-expanderHeader {
+        background-color: #262730;
+        color: #fafafa;
     }
     </style>
 """, unsafe_allow_html=True)
