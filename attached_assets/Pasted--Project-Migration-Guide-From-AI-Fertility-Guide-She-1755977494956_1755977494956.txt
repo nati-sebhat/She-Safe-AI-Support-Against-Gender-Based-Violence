@@ -1,0 +1,248 @@
+________________________________________
+🛠️ Project Migration Guide
+From AI Fertility Guide → She Safe (Anti-GBV AI Chatbot)
+This guide explains step-by-step how to transform the existing AI Fertility Guide repository into She Safe, an AI chatbot that supports survivors of Gender-Based Violence (GBV).
+📌 Repo Base:
+Use this repository as your starting point:
+👉 https://github.com/kaleab-k/AI-Fertility-Guide
+📌 Important Rule:
+Do NOT change the folder or file structure. Only edit the specified files below.
+📌 Final Deliverable:
+A working AI app named She Safe with:
+•	GBV questionnaire
+•	Chatbot assistant for guidance & safety
+•	Emergency support features (incl. Ethiopia + Cameroon contacts)
+•	Mental health & education resources
+•	Panic button for safe exit
+•	Safe & aesthetic design
+________________________________________
+1️⃣ Questionnaire File – questionnaire.py
+This file currently contains fertility survey questions. Replace them with the new GBV questionnaire.
+✅ What to Do:
+•	Open questionnaire.py
+•	Remove all fertility-related questions
+•	Paste the following instead:
+# questionnaire.py – She Safe GBV Chatbot
+
+QUESTIONNAIRE = {
+    "Personal Safety & Immediate Risk": [
+        "Are you currently in immediate danger? (Yes / No)",
+        "Do you feel safe in your environment? (Yes / No)",
+        "Do you have trusted contacts for help? (Yes / No)"
+    ],
+
+    "Type & Context of GBV": [
+        "Type of GBV: Physical, Emotional, Sexual, Digital, Economic, Other",
+        "Who is the perpetrator? (Partner / Family / Stranger / Authority / Other)",
+        "Where does it occur? (Home / Work / School / Online / Public)"
+    ],
+
+    "Timing & Frequency": [
+        "How long has the situation been happening?",
+        "How frequently does it occur?"
+    ],
+
+    "Awareness & Knowledge": [
+        "Are you aware of your legal rights?",
+        "Have you received GBV awareness training?",
+        "Do you know where to report incidents?",
+        "Would you like educational resources?"
+    ],
+
+    "Support & Resources": [
+        "Do you know GBV support services?",
+        "Would you like hotlines, shelters, NGOs info?",
+        "Do you want guidance on safely contacting support?"
+    ],
+
+    "Mental Health & Emotional Support": [
+        "How are you coping emotionally?",
+        "Would you like mental health tips or exercises?",
+        "Are you interested in motivational survivor stories?"
+    ],
+
+    "Digital Safety & Online Abuse": [
+        "Have you experienced online abuse?",
+        "Do you know how to protect digital privacy?",
+        "Would you like tips on safe social media use?"
+    ],
+
+    "Reporting & Safety Planning": [
+        "Are you considering reporting?",
+        "Would you like guidance on a safety plan?",
+        "Do you want a panic/quick-exit button?",
+        "Do you want secret code words for emergencies?"
+    ]
+}
+________________________________________
+2️⃣ Assistant Logic – assistant.py
+This file controls the AI chatbot’s logic and personality.
+✅ What to Do:
+•	Open assistant.py
+•	Replace all fertility-related code with this GBV-focused version:
+# assistant.py – She Safe GBV AI Assistant
+import openai, os
+from dotenv import load_dotenv
+
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+SYSTEM_PROMPT = """
+You are She Safe, an AI chatbot that helps users facing Gender-Based Violence (GBV).
+Your role is to:
+- Assess the situation safely and anonymously.
+- Identify the type of GBV: physical, emotional, sexual, digital, economic, or other.
+- Provide actionable guidance: emergency contacts, shelters, hotlines, legal aid.
+- Suggest safety plans and coping strategies.
+- Share awareness tips: consent, rights, healthy relationships.
+- Offer mental health support: breathing exercises, survivor stories.
+- Always be empathetic, concise, and privacy-focused.
+"""
+
+def get_response(user_input):
+    response = openai.ChatCompletion.create(
+        model="gpt-4o-mini",  # or gpt-5-nano
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": user_input}
+        ]
+    )
+    return response['choices'][0]['message']['content']
+________________________________________
+3️⃣ Main App Flow – app.py
+This file controls the UI/UX and integrates the questionnaire + assistant.
+✅ What to Do:
+•	Update all fertility-related text → GBV support content.
+•	Add a panic/quick-exit button (redirects to Google).
+•	Add emergency support buttons (Ethiopia + Cameroon hotlines & police).
+•	Ensure clean fonts and soft design.
+Suggested Implementation:
+# app.py – She Safe GBV Chatbot
+import streamlit as st
+from assistant import get_response
+from questionnaire import QUESTIONNAIRE
+
+# --- Page Settings ---
+st.set_page_config(
+    page_title="She Safe – GBV Support",
+    page_icon="assets/logo.png",
+    layout="centered"
+)
+
+# --- Custom CSS ---
+st.markdown("""
+    <style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #faf9f7;
+        color: #333;
+    }
+    h1, h2, h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        color: #222;
+    }
+    .stButton>button {
+        background-color: #e07a5f;
+        color: white;
+        border-radius: 12px;
+        padding: 0.6em 1.2em;
+        font-size: 16px;
+    }
+    .panic-button>button {
+        background-color: #c1121f;
+        color: white;
+        font-weight: bold;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+# --- Header ---
+st.image("assets/logo.png", width=100)
+st.title("🌍 She Safe – AI Chatbot Against GBV")
+st.write("Confidential, safe, and supportive space for survivors and allies.")
+
+# --- Panic Button ---
+if st.button("🚨 Quick Exit", key="panic", help="Leave immediately"):
+    st.markdown('<meta http-equiv="refresh" content="0; url=https://google.com" />', unsafe_allow_html=True)
+
+# --- Emergency Support Section ---
+st.subheader("🚨 Get Emergency Support")
+st.write("If you are in immediate danger, please contact local authorities or hospitals:")
+st.markdown("""
+**Ethiopia**
+- Police: 991
+- Ambulance: 907
+- Women & Children Hotline: 978  
+
+**Cameroon**
+- Police: 117
+- Ambulance: 112  
+- Gender Violence Hotline: 1521  
+""")
+
+# --- Questionnaire ---
+with st.expander("📋 Start GBV Questionnaire"):
+    for section, questions in QUESTIONNAIRE.items():
+        st.subheader(section)
+        for q in questions:
+            st.text_input(q, key=q)
+
+# --- Chatbot ---
+st.subheader("💬 Talk to She Safe")
+user_input = st.text_area("Type your message here...")
+if st.button("Send"):
+    if user_input.strip():
+        with st.spinner("She Safe is responding..."):
+            response = get_response(user_input)
+        st.markdown(f"**She Safe:** {response}")
+________________________________________
+4️⃣ Assets & Branding – /assets
+•	Replace all fertility images with GBV awareness images.
+•	Add a new She Safe logo → /assets/logo.png.
+•	Update favicon → /assets/favicon.ico.
+________________________________________
+5️⃣ Requirements – requirements.txt
+Final list should be:
+openai
+flask
+streamlit
+requests
+python-dotenv
+(remove fertility-specific packages if not used).
+________________________________________
+6️⃣ API Setup – .env
+•	Create a .env file in the project root.
+•	Add your OpenAI key:
+OPENAI_API_KEY=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
+________________________________________
+✅ End Result
+After following all these steps:
+•	Project name = She Safe
+•	Branding updated with logo, assets, safe colors
+•	GBV questionnaire replaces fertility questions
+•	AI Assistant gives safe & supportive responses
+•	Emergency contacts for Ethiopia + Cameroon included
+•	Panic button ensures safe exits
+•	UI is clean, empathetic, and professional
+________________________________________
+
+
+final structure 
+
+SheSafe/
+│── app.py                 # Main Streamlit app flow
+│── assistant.py            # AI chatbot logic
+│── questionnaire.py        # GBV questionnaire
+│── requirements.txt        # Dependencies
+│── .env                    # Your API key (not shared in repo)
+│
+├── assets/                 # Branding & visuals
+│   │── logo.png          # ✅ She Safe main logo(uploaded by me 
+│   │── favicon.ico         # ✅ App favicon (same as logo or variant)
+│   │── logo.png            # logo image uploaded  by me
+│   │── 2.png             # image uploaded by me
+││   │── 3.png             # image uploaded by me
+│   │── 4.png             # image uploaded by me
+│── 5.png             # image uploaded by me
+└── README.md               # (Optional) Documentation for setup
