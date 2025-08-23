@@ -110,6 +110,30 @@ st.markdown("""
         background-color: #262730;
         color: #fafafa;
     }
+    
+    /* Header/Toolbar styling - wine red background */
+    .stApp > header {
+        background-color: #722F37 !important;
+    }
+    
+    header[data-testid="stHeader"] {
+        background-color: #722F37 !important;
+        height: 3rem;
+    }
+    
+    .stApp > header, .stApp header {
+        background-color: #722F37 !important;
+    }
+    
+    /* Three dots menu styling */
+    button[data-testid="baseButton-headerNoPadding"] {
+        color: #fafafa !important;
+    }
+    
+    /* Top toolbar background */
+    .stToolbar {
+        background-color: #722F37 !important;
+    }
     </style>
 """, unsafe_allow_html=True)
 
