@@ -66,6 +66,33 @@ st.markdown("""
         border-radius: 8px;
     }
     
+    /* Quick Exit button - black and dark red dynamic */
+    .stButton[data-testid="baseButton-secondary"] > button {
+        background: linear-gradient(135deg, #000000 0%, #430000 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+    }
+    
+    /* Submit Assessment button - red and dark gray dynamic */
+    .stForm .stButton > button {
+        background: linear-gradient(135deg, #8d1638 0%, #34333a 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+    }
+    
+    /* Mental health buttons - using JavaScript to target */
+    .mental-health-button {
+        background: linear-gradient(135deg, #8d1638 0%, #34333a 100%) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 8px !important;
+        font-weight: bold !important;
+    }
+    
     .stTextInput > div > div > input {
         background-color: #000000;
         color: #ffffff;
@@ -606,11 +633,11 @@ with tab4:
     col1, col2 = st.columns(2)
     
     with col1:
-        if st.button("🧘 Get Coping Strategies"):
+        if st.button("🧘 Get Coping Strategies", key="coping_button"):
             st.markdown(get_coping_strategies())
     
     with col2:
-        if st.button("💝 Get Daily Affirmations"):
+        if st.button("💝 Get Daily Affirmations", key="affirmations_button"):
             # Show diverse women image for representation
             try:
                 st.image("assets/2.png", width=300, caption="")
@@ -672,7 +699,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Add JavaScript for panic button functionality
+# Add JavaScript for panic button functionality and button styling
 st.markdown("""
 <script>
 function quickExit() {
@@ -685,5 +712,34 @@ document.addEventListener('keydown', function(e) {
         quickExit();
     }
 });
+
+// Add dynamic styling to mental health buttons
+setTimeout(function() {
+    // Style the coping strategies button
+    const copingButton = document.querySelector('button[data-testid="baseButton-secondary"]:contains("Get Coping Strategies")');
+    if (copingButton) {
+        copingButton.style.background = 'linear-gradient(135deg, #8d1638 0%, #34333a 100%)';
+        copingButton.style.fontWeight = 'bold';
+    }
+    
+    // Style the daily affirmations button
+    const affirmationsButton = document.querySelector('button[data-testid="baseButton-secondary"]:contains("Get Daily Affirmations")');
+    if (affirmationsButton) {
+        affirmationsButton.style.background = 'linear-gradient(135deg, #8d1638 0%, #34333a 100%)';
+        affirmationsButton.style.fontWeight = 'bold';
+    }
+    
+    // Alternative approach - find buttons by their text content
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        if (button.textContent.includes('Get Coping Strategies') || button.textContent.includes('Get Daily Affirmations')) {
+            button.style.background = 'linear-gradient(135deg, #8d1638 0%, #34333a 100%)';
+            button.style.color = 'white';
+            button.style.fontWeight = 'bold';
+            button.style.border = 'none';
+            button.style.borderRadius = '8px';
+        }
+    });
+}, 1000);
 </script>
 """, unsafe_allow_html=True)
