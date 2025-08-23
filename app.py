@@ -689,7 +689,7 @@ with tab4:
     
     st.markdown("---")
     
-    with st.expander("🌱 Breathing Exercise"):
+    with st.expander("Breathing Exercise"):
         st.markdown("""
         **4-7-8 Breathing Technique for Anxiety Relief:**
         
@@ -703,7 +703,7 @@ with tab4:
         *This technique can help calm anxiety and reduce stress.*
         """)
     
-    with st.expander("🤝 Building Support Networks"):
+    with st.expander("Building Support Networks"):
         st.markdown("""
         **How to Build a Support Network:**
         
