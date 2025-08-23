@@ -232,6 +232,44 @@ st.markdown("""
         color: #ffffff !important;
     }
     
+    /* Additional dropdown styling for select boxes */
+    .stSelectbox [data-baseweb="select"] {
+        background-color: #262730 !important;
+    }
+    
+    .stSelectbox [data-baseweb="select"] > div {
+        background-color: #262730 !important;
+        color: #ffffff !important;
+    }
+    
+    /* Dropdown list background and text */
+    [role="listbox"] {
+        background-color: #262730 !important;
+        border: 1px solid #404040 !important;
+    }
+    
+    [role="option"] {
+        background-color: #262730 !important;
+        color: #ffffff !important;
+    }
+    
+    [role="option"]:hover {
+        background-color: #404040 !important;
+        color: #ffffff !important;
+    }
+    
+    /* Select dropdown arrow and container */
+    .stSelectbox > div > div {
+        background-color: #262730 !important;
+        color: #ffffff !important;
+    }
+    
+    /* Force all select elements to have dark background */
+    select {
+        background-color: #262730 !important;
+        color: #ffffff !important;
+    }
+    
     /* Fix form text visibility */
     .stForm label, .stForm div, .stForm span {
         color: #ffffff !important;
