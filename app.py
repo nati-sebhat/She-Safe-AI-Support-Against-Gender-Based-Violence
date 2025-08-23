@@ -124,7 +124,7 @@ st.markdown("""
     
     /* Mental health buttons - using JavaScript to target */
     .mental-health-button {
-        background: linear-gradient(135deg, #8d1638 0%, #34333a 100%) !important;
+        background-color: #2f0000 !important;
         color: white !important;
         border: none !important;
         border-radius: 8px !important;
@@ -758,14 +758,14 @@ setTimeout(function() {
     // Style the coping strategies button
     const copingButton = document.querySelector('button[data-testid="baseButton-secondary"]:contains("Get Coping Strategies")');
     if (copingButton) {
-        copingButton.style.background = 'linear-gradient(135deg, #8d1638 0%, #34333a 100%)';
+        copingButton.style.backgroundColor = '#2f0000';
         copingButton.style.fontWeight = 'bold';
     }
     
     // Style the daily affirmations button
     const affirmationsButton = document.querySelector('button[data-testid="baseButton-secondary"]:contains("Get Daily Affirmations")');
     if (affirmationsButton) {
-        affirmationsButton.style.background = 'linear-gradient(135deg, #8d1638 0%, #34333a 100%)';
+        affirmationsButton.style.backgroundColor = '#2f0000';
         affirmationsButton.style.fontWeight = 'bold';
     }
     
@@ -773,7 +773,7 @@ setTimeout(function() {
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => {
         if (button.textContent.includes('Get Coping Strategies') || button.textContent.includes('Get Daily Affirmations')) {
-            button.style.background = 'linear-gradient(135deg, #8d1638 0%, #34333a 100%)';
+            button.style.backgroundColor = '#2f0000';
             button.style.color = 'white';
             button.style.fontWeight = 'bold';
             button.style.border = 'none';
