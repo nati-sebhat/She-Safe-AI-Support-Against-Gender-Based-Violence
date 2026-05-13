@@ -1,4 +1,4 @@
-# She Safe - AI Support Against Gender-Based Violence
+# 🦋 She Safe – AI Support Against Gender-Based Violence
 
 She Safe is a confidential, AI-powered chatbot designed to provide support, resources, and guidance to survivors of Gender-Based Violence (GBV). This application offers a safe space for users to seek help, access emergency resources, and receive mental health support.
 
@@ -42,11 +42,12 @@ She Safe is a confidential, AI-powered chatbot designed to provide support, reso
 - **Frontend:** Streamlit (Python web framework)
 - **AI Integration:** OpenAI GPT-4o
 - **Environment Management:** python-dotenv
-- **Deployment:** Docker-ready with configurable server settings
 
-## Installation & Setup
+⚠️ Disclaimer
+She Safe is an AI support tool and not a substitute for professional help. If you or someone you know is in immediate danger, please contact local emergency services right away.
 
-1. **Clone the repository:**
-```bash
-git clone <repository-url>
-cd she-safe
+<div align="center">
+<strong>🦋 She Safe — Breaking the silence, building safety.</strong><br>
+<em>You are not alone. You are believed. You are supported.</em>
+</div>
+
